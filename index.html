@@ -5,9 +5,32 @@
     </style>
   </head>
   <body>
-    <div class="container">
-    
-    </div>
     <script src="bundle.js"></script>
+    <div class="container">
+      <a-scene>
+        <a-assets>
+          
+          <img id="sky" src="https://cdn.glitch.com/6c483d0f-b4d2-4da9-89b7-36eadb53d151%2Fsun.png">
+          <img id="grid" src="https://cdn.glitch.com/6c483d0f-b4d2-4da9-89b7-36eadb53d151%2Ftileable_futuristic_grid_by_ndugger-d55yz5h.png">
+          <a-asset-item id="test" src="https://cdn.glitch.com/6c483d0f-b4d2-4da9-89b7-36eadb53d151%2Foculus-touch-controller-right.obj?1496533419623"></a-asset-item>
+          <a-asset-item id="testmat" src="https://cdn.glitch.com/6c483d0f-b4d2-4da9-89b7-36eadb53d151%2Foculus-touch-controller-left.mtl?1496533418517"></a-asset-item>
+
+        </a-assets>
+        <!-- below this -->
+        <a-entity slap></a-entity>
+        
+        <a-entity id="lh" hand-controls="left"></a-entity>
+        <a-entity id="rh" hand-controls="right"></a-entity>
+        
+        <a-obj-model src="#test" mtl="testmat" position="0 0.5 -3"></a-obj-model>
+        
+        <a-text value="hello world!" scale="2 2 2" position="0 0.5 -3"></a-text>
+        <a-text value="hello world!" color="00000" scale="2 2 2" position="0 0.5 -3.02"></a-text>
+        <a-sky id="mysky" radius="1000" src="#sky"></a-sky>
+        <a-box id="mybox" position="-1 0.5 -2" rotation="0 45 0" src="#grid" color="#4CC3D9"></a-box>
+        <a-plane position="0 0 -4" src="#grid" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+        <a-light position="0 3 -3"></a-light>
+      </a-scene>
+    </div>
   </body>
 </html>
