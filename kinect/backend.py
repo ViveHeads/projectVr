@@ -13,6 +13,9 @@ import cv2
 #: path to shared data
 # SHARED_DATA = path.join(path.dirname(__file__), 'shared')
 
+from werkzeug.wsgi import SharedDataMiddleware
+from werkzeug.contrib.fixers import HeaderRewriterFix
+
 class WebApp(object):
 
     def __init__(self):
@@ -57,7 +60,12 @@ class SnapShots(WebApp):
             Rule('/get_image', endpoint='get_image', methods=['GET'])
         ])
 
-http = WSGIServer(('0.0.0.0', 8080), SnapShots())
+app = SharedDataMiddleware(SnapShots(), {
+        '/': '../assets'
+    }, cache=True)
+app = HeaderRewriterFix(app, add_headers=[('Access-Control-Allow-Origin', '*'), ('Content-Security-Policy', '*')])
+
+http = WSGIServer(('0.0.0.0', 8080), app)
 http.serve_forever()
 
 
