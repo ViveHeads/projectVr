@@ -14,13 +14,15 @@ var zoneList = ['zone-1', 'zone-2', 'zone-3'];
 var currentZone = {
 	value: 0
 };
-	AFRAME.registerComponent('grab',{
+	AFRAME.registerComponent('grab',
+  {
 		schema: {
       delay: {default: 0, min: 0},
       chunk: {min: 0},
       src: {},
       id: {}
 		},
+
 		init:function(){
 			console.log(this.el);
 			var clickable = ['nextZone', 'preZone'];	
@@ -63,51 +65,51 @@ var currentZone = {
 	    	});
 	
 		},
+
 		triggerdown:{
 
 		},
+    /**
+     * Called once when component is attached. Generally for initial setup.
+     */
+    init2: function () {
       /**
-       * Called once when component is attached. Generally for initial setup.
+       * Make sure Assets Exists
        */
-      init: function () {
-        /**
-         * Make sure Assets Exists
-         */
 
-        if (!assetsChecked) {
-          assetsChecked = true;
-          if(document.querySelector("a-assets") == null){
-            aScene = $("a-scene");
-            aAssets = document.createElement("a-assets");
-            aScene.prepend(aAssets);
-            aAssets = $("a-assets");
-          }
+      if (!assetsChecked) {
+        assetsChecked = true;
+        if(document.querySelector("a-assets") == null){
+          aScene = $("a-scene");
+          aAssets = document.createElement("a-assets");
+          aScene.prepend(aAssets);
+          aAssets = $("a-assets");
         }
-
-        // Gather Up Lazy Loads
-        if (!lazyLoadInitiated) {
-          lazyLoadInitiated = true;
-          initLazyLoading($('[lazy-load]'));
-        }
-
-      },
-
-      /**
-       * Called when component is attached and when component data changes.
-       * Generally modifies the entity based on the data.
-       */
-      update: function (oldData) {
-
-      },
-
-      /**
-       * Called when a component is removed (e.g., via removeAttribute).
-       * Generally undoes all modifications to the entity.
-       */
-      remove: function () {
-
       }
-    };
+
+      // Gather Up Lazy Loads
+      if (!lazyLoadInitiated) {
+        lazyLoadInitiated = true;
+        initLazyLoading($('[lazy-load]'));
+      }
+
+    },
+
+    /**
+     * Called when component is attached and when component data changes.
+     * Generally modifies the entity based on the data.
+     */
+    update: function (oldData) {
+
+    },
+
+    /**
+     * Called when a component is removed (e.g., via removeAttribute).
+     * Generally undoes all modifications to the entity.
+     */
+    remove: function () {
+
+    },
 
     // Checking existance of <a-assets>
     assetsChecked: false,
