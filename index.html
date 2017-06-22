@@ -1,50 +1,32 @@
 <html>
-<body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/85/three.min.js"></script>
-    <!-- <img src="http://localhost:8080/get_image"></img> -->
-    <canvas id="2d" width="512" height="512" style="display: none"></canvas>
+  <head>
+    <title>Web VR interact</title>
+    <style>
+    </style>
+  </head>
+  <body>
+    <script src="bundle.js"></script>
+    <div class="container">
+      <a-scene>
+        <a-assets>
+          
+          <<a-asset-item  id="zone-1" src="https://cdn.glitch.com/6c483d0f-b4d2-4da9-89b7-36eadb53d151%2Fsun.png">
+          <a-asset-item id="zone-2" src="/assets/PANO_eastpoint.jpg"></a-asset-item>
+          <a-asset-item id="zone-3" src="/assets/PANO_freezerwarehouse.jpg"></a-asset-item>
+          
 
-    <canvas id="3d" width="1000px" height="800px"></canvas>
-    <script>
-    import THREE from 'three'
-
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('3d') })
-    let scene, camera
-
-    const canvas2d = document.getElementById('2d')
-    const ctx = canvas2d.getContext("2d")
-
-    const img = new Image()
-    img.crossOrigin = 'anonymous'
-    img.src = 'http://localhost:8080'
-
-    const map = new THREE.Texture(canvas2d)
-    const material = new THREE.MeshBasicMaterial({ map: map })
-
-    const init = () => {
-        scene = new THREE.Scene()
-
-        camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 1, 10000)
-        camera.position.set(0, 0, 5)
-        scene.add(camera)
-
-        const geometry = new THREE.TorusGeometry(1, 0.5, 16, 16)
-        const mesh = new THREE.Mesh(geometry, material)
-        scene.add(mesh)
-    }
-
-    const animate = () => {
-        requestAnimationFrame(animate)
-
-        // Update texture 
-        ctx.drawImage(img, 0, 0, 500, 500)
-        map.needsUpdate = true
-
-        renderer.render(scene, camera)
-    }
-
-    init()
-    animate()
-    </script>
-</body>
+        </a-assets>
+        
+        <a-entity camera="userHeight: 1.6" look-controls></a-entity>
+        <a-entity id="lh" vive-controls="hand: left" grab></a-entity>
+        <a-entity id="rh" vive-controls="hand: right" grab></a-entity>
+        
+        <a-text value="Next" id="nextZone" scale="0.5 0.5 0.5" position="0.4 1 0" ></a-text>
+        <a-text value="Previous" id="preZone" scale="0.5 0.5 0.5" position="-0.4 1 0"></a-text>
+        <a-sky id="mysky"  src="#zone-3"></a-sky>
+        <!-- <a-box id="mybox" position="0 0 .5" src="#grid" color="#4CC3D9"></a-box> -->
+        <a-light position="0 5 -3"></a-light>
+      </a-scene>
+    </div>
+  </body>
 </html>
