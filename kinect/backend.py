@@ -9,7 +9,7 @@ from io import BytesIO
 import logging
 import numpy as np
 import sqlite3
-import cv2
+import cv2, os
 #: path to shared data
 # SHARED_DATA = path.join(path.dirname(__file__), 'shared')
 
@@ -47,6 +47,7 @@ c = conn.cursor()
 from PIL import Image
 from itertools import cycle
 alright = cycle(xrange(1, 31))
+spheres = cycle(['../assets/' + x for x in os.listdir('../assets') if 'JPG' in x])
 
 class SnapShots(WebApp):
 
@@ -56,8 +57,14 @@ class SnapShots(WebApp):
         with open(rgb[0], 'rb') as f:
             return Response(f.read(), status=200)
 
+    def endpoint_get_sphere(self, adapter, request, **values):
+        s = next(spheres)
+        with open(s, 'rb') as f:
+            return Response(f.read(), status=200)
+
     url_map = Map([
-            Rule('/get_image', endpoint='get_image', methods=['GET'])
+            Rule('/get_image', endpoint='get_image', methods=['GET']),
+            Rule('/get_sphere', endpoint='get_sphere', methods=['GET'])
         ])
 
 app = SharedDataMiddleware(SnapShots(), {
