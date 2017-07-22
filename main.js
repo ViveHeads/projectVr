@@ -1,5 +1,6 @@
 var AFRAME = require('aframe');
 var zoneList = ['zone-1', 'zone-2', 'zone-3'];
+var assetsChecked  = false;
 var currentZone = {
   value: 0
 };
@@ -13,6 +14,7 @@ var currentZone = {
       var boundingBox = new THREE.Box3();
       self.el.addEventListener('triggerdown', function () {
         clickable.forEach(function(each){
+          console.log('goti');
           var zone = document.getElementById(each);
           if(zone){
             var location = zone.attributes.position.value.split(' ');
@@ -48,9 +50,10 @@ var currentZone = {
         });
   
     },
+    
     triggerdown:{
 
-    }
+    },
 
     /**
      * Called once when component is attached. Generally for initial setup.
