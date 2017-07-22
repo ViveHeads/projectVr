@@ -17,14 +17,15 @@
 
         </a-assets>
         
-        <a-entity camera="userHeight: 1.6" look-controls></a-entity>
+        <a-entity id="headSet" camera="userHeight: 1.6" look-controls>
+          <!-- <a-box id="mybox" position="2 5 -13"  color="#4CC3D9"></a-box> -->
+          <a-text value="Next" id="nextZone" scale="0.5 0.5 0.5" position="0.2 -0.1 -0.5" ></a-text>
+          <a-text value="Previous" id="preZone" scale="0.5 0.5 0.5" position="-0.4 -0.1 -0.5"></a-text>          
+        </a-entity>
         <a-entity id="lh" vive-controls="hand: left" grab></a-entity>
         <a-entity id="rh" vive-controls="hand: right" grab></a-entity>
         
-        <a-text value="Next" id="nextZone" scale="0.5 0.5 0.5" position="0.4 1 0" ></a-text>
-        <a-text value="Previous" id="preZone" scale="0.5 0.5 0.5" position="-0.4 1 0"></a-text>
         <a-sky id="mysky"  src="#zone-3"></a-sky>
-        <!-- <a-box id="mybox" position="0 0 .5" src="#grid" color="#4CC3D9"></a-box> -->
         <a-light position="0 5 -3"></a-light>
       </a-scene>
     </div>
