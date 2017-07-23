@@ -1,4 +1,7 @@
 var AFRAME = require('aframe');
+require('aframe-vive-cursor-component');
+var objectsClicable = []; 
+require('./javascript/clickable.js')(AFRAME, objectsClicable);
 var zoneList = ['zone-1', 'zone-2', 'zone-3'];
 var assetsChecked  = false;
 var currentZone = {
@@ -9,12 +12,10 @@ var currentZone = {
     },
     init:function(){
       console.log(this.el);
-      var clickable = ['nextZone', 'preZone'];  
       var self = this;
       var boundingBox = new THREE.Box3();
       self.el.addEventListener('triggerdown', function () {
-        clickable.forEach(function(each){
-          console.log('goti');
+        objectsClicable.forEach(function(each){
           var zone = document.getElementById(each);
           if(zone){
             var location = zone.attributes.position.value.split(' ');

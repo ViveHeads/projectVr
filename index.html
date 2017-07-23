@@ -10,17 +10,18 @@
       <a-scene>
         <a-assets>
           
-          <a-asset-item  id="zone-1" src="https://cdn.glitch.com/6c483d0f-b4d2-4da9-89b7-36eadb53d151%2Fsun.png"></a-asset-item>
-          <a-asset-item id="zone-2" src="/assets/PANO_eastpoint.jpg"></a-asset-item>
-          <a-asset-item id="zone-3" src="/assets/PANO_freezerwarehouse.jpg"></a-asset-item>
+          <a-asset-item  id="zone-1" class="photoenv" src="https://cdn.glitch.com/6c483d0f-b4d2-4da9-89b7-36eadb53d151%2Fsun.png"></a-asset-item>
+          <a-asset-item id="zone-2" class="photoenv" src="/assets/PANO_eastpoint.jpg"></a-asset-item>
+          <a-asset-item id="zone-3" class="photoenv" src="/assets/PANO_freezerwarehouse.jpg"></a-asset-item>
           
 
         </a-assets>
         
         <a-entity id="headSet" camera="userHeight: 1.6" look-controls>
-          <!-- <a-box id="mybox" position="2 5 -13"  color="#4CC3D9"></a-box> -->
-          <a-text value="Next" id="nextZone" scale="0.5 0.5 0.5" position="0.2 -0.1 -0.5" ></a-text>
-          <a-text value="Previous" id="preZone" scale="0.5 0.5 0.5" position="-0.4 -0.1 -0.5"></a-text>          
+          <a-text value="Next" id="nextZone" scale="0.5 0.5 0.5" position="0.2 -0.1 -0.5"  clickobj >
+          </a-text>
+
+          <a-text value="Previous" id="preZone" scale="0.5 0.5 0.5" position="-0.4 -0.1 -0.5" clickobj ></a-text>          
         </a-entity>
         <a-entity id="lh" vive-controls="hand: left" grab></a-entity>
         <a-entity id="rh" vive-controls="hand: right" grab></a-entity>
@@ -30,4 +31,4 @@
       </a-scene>
     </div>
   </body>
-</html>
+</html> 
