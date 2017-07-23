@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/jmunsch/vr_crash_course#readme",
   "dependencies": {
-    "aframe": "^0.5.0"
+    "aframe": "^0.6.1"
+  },
+  "devDependencies": {
+    "browserify": "^14.4.0"
   }
 }
