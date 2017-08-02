@@ -3,30 +3,30 @@
     <title>Web VR interact</title>
     <style>
     </style>
+    <script src="bundle.js"></script>
   </head>
   <body>
-    <script src="bundle.js"></script>
     <div class="container">
       <a-scene>
         <a-assets>
           
-          <a-asset-item  id="zone-1" class="photoenv" src="https://cdn.glitch.com/6c483d0f-b4d2-4da9-89b7-36eadb53d151%2Fsun.png"></a-asset-item>
-          <a-asset-item id="zone-2" class="photoenv" src="/assets/PANO_eastpoint.jpg"></a-asset-item>
-          <a-asset-item id="zone-3" class="photoenv" src="/assets/PANO_freezerwarehouse.jpg"></a-asset-item>
+          <img  id="zone-1" class="photoenv" src="https://cdn.glitch.com/6c483d0f-b4d2-4da9-89b7-36eadb53d151%2Fsun.png"></img>
+          <img id="zone-2" class="photoenv" src="/assets/PANO_eastpoint.jpg"></img>
+          <img id="zone-3" class="photoenv" src="/assets/PANO_freezerwarehouse.jpg"></img>
           
 
         </a-assets>
+        <a-entity geometry="primitive: sphere; radius: 1.5"
+          material="color: blue;" src="#zone-3"
+          position="0 0 -5"></a-entity>
         
-        <a-entity id="headSet" camera="userHeight: 1.6" look-controls>
-          <a-text value="Next" id="nextZone" scale="0.5 0.5 0.5" position="0.2 -0.1 -0.5"  clickobj >
-          </a-text>
-
-          <a-text value="Previous" id="preZone" scale="0.5 0.5 0.5" position="-0.4 -0.1 -0.5" clickobj ></a-text>          
+        <a-entity id="headSet" camera="userHeight: 1.6" look-controls>        
         </a-entity>
-        <a-entity id="lh" vive-controls="hand: left" grab></a-entity>
-        <a-entity id="rh" vive-controls="hand: right" grab></a-entity>
-        
-        <a-sky id="mysky"  src="#zone-3"></a-sky>
+        <a-entity id="lh" vive-controls="hand: left" grab ></a-entity>
+        <a-entity id="rh" vive-controls="hand: right" grab >
+        </a-entity>
+        <a-entity laser-controls="hand: right"  raycaster="objects: .clickable; far: 5" line="color: red; opacity: 0.75"></a-entity>
+        <a-sky  id="my-sky" src="#zone-1"></a-sky>
         <a-light position="0 5 -3"></a-light>
       </a-scene>
     </div>

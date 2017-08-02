@@ -1,5 +1,5 @@
 var AFRAME = require('aframe');
-require('aframe-vive-cursor-component');
+
 var objectsClicable = []; 
 require('./javascript/clickable.js')(AFRAME, objectsClicable);
 var zoneList = ['zone-1', 'zone-2', 'zone-3'];
@@ -14,52 +14,14 @@ var currentZone = {
       console.log(this.el);
       var self = this;
       var boundingBox = new THREE.Box3();
-      self.el.addEventListener('triggerdown', function () {
-        objectsClicable.forEach(function(each){
-          var zone = document.getElementById(each);
-          if(zone){
-            var location = zone.attributes.position.value.split(' ');
-            elePostion = {
-              x: Number(location[0]),
-              y: Number(location[1]),
-              z: Number(location[2])
-            }
-            var mesh = self.el.getObject3D('mesh')
-            boundingBox.setFromObject(mesh);
-            var min = boundingBox.min;
-            var max = boundingBox.max;
-
-            var intersect = (min.x  - elePostion.x <= 0.5 && min.x  - elePostion.x >= -0.5 ) &&
-                          (min.y - elePostion.y  <= 0.5 && min.y - elePostion.y  >= -0.5 ) &&
-              (min.z - elePostion.z <= 0.5&& min.z - elePostion.z >= -0.5);
-            if(intersect){
-              if(each === 'preZone'){
-                currentZone.value--  ;
-              } else {
-                currentZone.value++ ;
-              }
-              console.log(currentZone.value); 
-              var sky  = document.getElementById('mysky');
-              var value = Math.abs(currentZone.value % (clickable.length+1));
-              console.log(value);
-              if (sky){
-                        sky.setAttribute('src', '#'+ zoneList[value]);
-                    }
-            }
-          }
-        })
-        });
+      self.el.addEventListener('triggerdown', triggerdown);
   
     },
     
     triggerdown:{
 
     },
-
-    /**
-     * Called once when component is attached. Generally for initial setup.
-     */
-    init2: function () {
+    nit2: function () {
       /**
        * Make sure Assets Exists
        */
@@ -216,4 +178,10 @@ var currentZone = {
         }
       }, el.attr("lazy-load").delay || 0);
     }
-	});
+  });
+
+
+  function triggerdown () {
+    var pos = this.el.getAttribute('position');
+    console.log(pos);
+  }
