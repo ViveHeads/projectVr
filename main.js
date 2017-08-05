@@ -182,6 +182,6 @@ var currentZone = {
 
 
   function triggerdown () {
-    var pos = this.el.getAttribute('position');
+    var pos = this.getAttribute('position');
     console.log(pos);
   }

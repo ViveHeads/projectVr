@@ -16,16 +16,14 @@
           
 
         </a-assets>
-        <a-entity geometry="primitive: sphere; radius: 1.5"
-          material="color: blue;" src="#zone-3"
-          position="0 0 -5"></a-entity>
+        <a-sphere radius="1.5"  class="clickable" shader="flat" position="0 0 -5" src="#zone-1" changepage></a-sphere>
         
         <a-entity id="headSet" camera="userHeight: 1.6" look-controls>        
         </a-entity>
-        <a-entity id="lh" vive-controls="hand: left" grab ></a-entity>
+        <a-entity id="lh" vive-controls="hand: left" grab  laser-controls raycaster="objects: .clickable; far: 5"></a-entity>
         <a-entity id="rh" vive-controls="hand: right" grab >
         </a-entity>
-        <a-entity laser-controls="hand: right"  raycaster="objects: .clickable; far: 5" line="color: red; opacity: 0.75"></a-entity>
+        <!-- <a-entity laser-controls="hand: right"  raycaster="objects: .clickable; far: 5" line="color: red; opacity: 0.75"></a-entity> -->
         <a-sky  id="my-sky" src="#zone-3"></a-sky>
         <a-light position="0 5 -3"></a-light>
       </a-scene>
